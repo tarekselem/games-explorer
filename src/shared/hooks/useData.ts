@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { CanceledError } from "axios";
-import apiClient from "@lib/api-client";
+import apiClient from "../lib/api-client";
 
 interface FetchDataResponse<TEntity> {
   count: number;
