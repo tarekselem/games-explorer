@@ -18,7 +18,7 @@
     "rootDir": "src",
     "baseUrl": ".",
     "paths": {
-      "@app": ["src/*"],
+      "src": ["src/*"],
       "@lib/*": ["src/lib/*"],
       "@services/*": ["src/services/*"],
       "@components/*": ["src/components/*"],
