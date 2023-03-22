@@ -1,7 +1,7 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import { CardContainer } from "src/components";
 import { GameCard, SkeletonCard } from "./components";
-import useGames from "./hooks/useGames";
+import { useGames } from "./hooks/";
 
 export const GamesGrid = () => {
   const { data, error, isLoading } = useGames();
@@ -30,3 +30,5 @@ export const GamesGrid = () => {
     </>
   );
 };
+
+export default GamesGrid;
