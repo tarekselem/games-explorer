@@ -4,7 +4,7 @@ interface IGenere {
   id: number;
   name: string;
   slug: string;
-  background_image: string;
+  image_background: string;
   games_count: number;
 }
 
