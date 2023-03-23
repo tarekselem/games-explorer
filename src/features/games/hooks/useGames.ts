@@ -6,12 +6,14 @@ interface IGamesFilters {
   selectedGenre: IGenre | null;
   selectedPlatform: IPlatform | null;
   selectedSortOrder: string;
+  searchText: string;
 }
 
 export const useGames = ({
   selectedGenre,
   selectedPlatform,
   selectedSortOrder,
+  searchText,
 }: IGamesFilters) =>
   useData<IGame>({
     endpoint: "/games",
@@ -20,9 +22,15 @@ export const useGames = ({
         genres: selectedGenre?.id,
         platforms: selectedPlatform?.id,
         ordering: selectedSortOrder,
+        search: searchText,
       },
     },
-    dependencies: [selectedGenre?.id, selectedPlatform?.id, selectedSortOrder],
+    dependencies: [
+      selectedGenre?.id,
+      selectedPlatform?.id,
+      selectedSortOrder,
+      searchText,
+    ],
   });
 
 export default useGames;
