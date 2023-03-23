@@ -6,6 +6,7 @@ import {
   Image,
   SkeletonText,
   Button,
+  Heading,
 } from "@chakra-ui/react";
 import { getCroppedImageUrl } from "@shared/utils/image-url";
 import { IGenre } from "@shared/models";
@@ -30,35 +31,45 @@ export const GenresList = ({ onSelect }: Prop) => {
   if (error) return <></>;
 
   return (
-    <List>
-      {isLoading &&
-        skeletons.map((skleleton, i) => (
-          <ListItem key={i}>
-            <SkeletonText />
+    <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
+      <List>
+        {isLoading &&
+          skeletons.map((skleleton, i) => (
+            <ListItem key={i}>
+              <SkeletonText />
+            </ListItem>
+          ))}
+
+        {data.map((genre) => (
+          <ListItem key={genre.id} paddingY={1}>
+            <HStack>
+              <Image
+                boxSize={8}
+                borderRadius={8}
+                fit="cover"
+                src={getCroppedImageUrl(genre.image_background)}
+              />
+              <Button
+                onClick={() => handleSelect(genre)}
+                fontSize="lg"
+                variant="link"
+                whiteSpace="normal"
+                textAlign="left"
+                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
+                colorScheme={
+                  selectedGenre?.id === genre.id ? "green" : "normal"
+                }
+              >
+                {genre.name}
+              </Button>
+            </HStack>
           </ListItem>
         ))}
-
-      {data.map((genre) => (
-        <ListItem key={genre.id} paddingY={1}>
-          <HStack>
-            <Image
-              boxSize={8}
-              borderRadius={8}
-              src={getCroppedImageUrl(genre.image_background)}
-            />
-            <Button
-              onClick={() => handleSelect(genre)}
-              fontSize="lg"
-              variant="link"
-              fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
-              colorScheme={selectedGenre?.id === genre.id ? "green" : "normal"}
-            >
-              {genre.name}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
-    </List>
+      </List>
+    </>
   );
 };
 
