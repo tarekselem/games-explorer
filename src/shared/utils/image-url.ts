@@ -1,4 +1,4 @@
-import noImagePlaceholder from "../../assets/no-image-placeholder.webp";
+import noImagePlaceholder from "@assets/no-image-placeholder.webp";
 export const getCroppedImageUrl = (
   url: string,
   width = 600,
