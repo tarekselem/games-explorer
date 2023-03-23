@@ -8,6 +8,7 @@ import {
   PlatformSelector,
   SortSelector,
 } from "./components";
+import GameHeading from "./components/GameHeading";
 import { IPlatform } from "./games-model";
 import { useGames } from "./hooks/";
 
@@ -26,22 +27,35 @@ export const GamesGrid = ({ selectedGenre }: Props) => {
     selectedGenre,
     selectedPlatform,
     selectedSortOrder,
+    searchText: "",
   });
 
   // TODO: move to a generic skeleton componenet
   const skeletons = [...Array(12)];
 
+  // TODO: change on Genre changes
+
   return (
     <>
       {error && <Text>{error}</Text>}
-      <Flex paddingLeft={2} marginBottom={5}>
-        <Box marginRight={5}>
-          <PlatformSelector
-            onSelect={(platform) => setSelectedPlatform(platform)}
-          />
-        </Box>
-        <SortSelector onSelect={(order) => setSelectedSortOrder(order)} />
-      </Flex>
+
+      <Box paddingLeft={2}>
+        <GameHeading
+          query={{
+            platformName: selectedPlatform?.name ?? "",
+            gerneName: "Action",
+          }}
+        />
+        <Flex marginBottom={5}>
+          <Box marginRight={5}>
+            <PlatformSelector
+              onSelect={(platform) => setSelectedPlatform(platform)}
+            />
+          </Box>
+          <SortSelector onSelect={(order) => setSelectedSortOrder(order)} />
+        </Flex>
+      </Box>
+
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding={3}
