@@ -15,10 +15,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "rootDir": "src",
     "baseUrl": ".",
     "paths": {
-      "src": ["src/*"],
       "@shared/*": ["src/shared/*"],
       "@features/*": ["src/features/*"]
     }

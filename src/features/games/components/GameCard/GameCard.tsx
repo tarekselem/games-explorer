@@ -1,6 +1,6 @@
 import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
 import { getCroppedImageUrl } from "@shared/utils/image-url";
-import { IGame } from "../games-model";
+import { IGame } from "../../games-model";
 import { PlatformsList } from "./PlatformsList";
 import { CriticScore } from "./CriticScore";
 

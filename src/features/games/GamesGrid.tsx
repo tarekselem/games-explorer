@@ -1,7 +1,7 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import { CardContainer } from "@shared/components";
 import { IGenre } from "@shared/models";
-import { GameCard, SkeletonCard } from "./components";
+import { GameCard, SkeletonCard, PlatformSelector } from "./components";
 import { useGames } from "./hooks/";
 
 interface Props {
@@ -15,6 +15,7 @@ export const GamesGrid = ({ selectedGenre }: Props) => {
   return (
     <>
       {error && <Text>{error}</Text>}
+      <PlatformSelector />
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding={3}

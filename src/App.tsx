@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Grid, GridItem, Show } from "@chakra-ui/react";
-import { NavBar } from "@shared/layouts/NavBar";
+import { NavBar } from "@shared/layouts";
 import { IGenre } from "@shared/models";
 import { GamesGrid } from "@features/games";
 import { GenresList } from "@features/genres";
