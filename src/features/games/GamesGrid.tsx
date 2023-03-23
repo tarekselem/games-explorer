@@ -35,10 +35,12 @@ export const GamesGrid = ({ selectedGenre }: Props) => {
 
   // TODO: change on Genre changes
 
+  if (error) {
+    return <Text>{error}</Text>;
+  }
+
   return (
     <>
-      {error && <Text>{error}</Text>}
-
       <Box paddingLeft={2}>
         <GameHeading
           query={{

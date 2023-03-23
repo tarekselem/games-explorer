@@ -1,6 +1,7 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
+import { sortOrders } from "src/data";
 
 interface Props {
   onSelect: (sortOrder: string) => void;
@@ -9,15 +10,6 @@ interface Props {
 export const SortSelector = ({ onSelect }: Props) => {
   // TODO: move to store and use selector to get
   const [selectedSortLabel, setSelectedSortLabel] = useState("Relevance");
-
-  const sortOrders: { value: string; label: string }[] = [
-    { value: "", label: "Relevance" },
-    { value: "-added", label: "Date added" },
-    { value: "name", label: "Name" },
-    { value: "-released", label: "Release date" },
-    { value: "-metacritic", label: "Popularity" },
-    { value: "-rating", label: "Average rating" },
-  ];
 
   const handleSelection = (sort: { value: string; label: string }) => {
     onSelect(sort.value);

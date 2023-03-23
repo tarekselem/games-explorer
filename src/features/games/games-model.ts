@@ -12,4 +12,5 @@ export interface IGame {
   // TODO: creatre DTOs mappers
   parent_platforms: { platform: IPlatform }[];
   metacritic: number;
+  rating_top: number;
 }
