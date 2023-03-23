@@ -8,7 +8,7 @@ import "./App.css";
 
 function App() {
   // TODO: move to store and use selector to get
-  const [selectedGenre, setselectedGenre] = useState<IGenre | null>(null);
+  const [selectedGenre, setSelectedGenre] = useState<IGenre | null>(null);
 
   return (
     <Grid
@@ -26,7 +26,7 @@ function App() {
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={5}>
-          <GenresList onSelect={(genre) => setselectedGenre(genre)} />
+          <GenresList onSelect={(genre) => setSelectedGenre(genre)} />
         </GridItem>
       </Show>
       <GridItem area="main">

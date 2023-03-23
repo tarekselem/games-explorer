@@ -1,3 +1,4 @@
 export * from "./GameCard";
 export * from "./SkeletonCard";
 export * from "./PlatformSelector";
+export * from "./SortSelector";

@@ -1,7 +1,14 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import { CardContainer } from "@shared/components";
 import { IGenre } from "@shared/models";
-import { GameCard, SkeletonCard, PlatformSelector } from "./components";
+import { useState } from "react";
+import {
+  GameCard,
+  SkeletonCard,
+  PlatformSelector,
+  SortSelector,
+} from "./components";
+import { IPlatform } from "./games-model";
 import { useGames } from "./hooks/";
 
 interface Props {
@@ -9,13 +16,32 @@ interface Props {
 }
 
 export const GamesGrid = ({ selectedGenre }: Props) => {
-  const { data, error, isLoading } = useGames(selectedGenre);
+  // TODO: move to GameQuery state
+  const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(
+    null
+  );
+  const [selectedSortOrder, setSelectedSortOrder] = useState("");
+
+  const { data, error, isLoading } = useGames({
+    selectedGenre,
+    selectedPlatform,
+    selectedSortOrder,
+  });
+
+  // TODO: move to a generic skeleton componenet
   const skeletons = [...Array(12)];
 
   return (
     <>
       {error && <Text>{error}</Text>}
-      <PlatformSelector />
+      <Flex paddingLeft={2} marginBottom={5}>
+        <Box marginRight={5}>
+          <PlatformSelector
+            onSelect={(platform) => setSelectedPlatform(platform)}
+          />
+        </Box>
+        <SortSelector onSelect={(order) => setSelectedSortOrder(order)} />
+      </Flex>
       <SimpleGrid
         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
         padding={3}

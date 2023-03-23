@@ -51,6 +51,7 @@ export const GenresList = ({ onSelect }: Prop) => {
               fontSize="lg"
               variant="link"
               fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
+              colorScheme={selectedGenre?.id === genre.id ? "green" : "normal"}
             >
               {genre.name}
             </Button>

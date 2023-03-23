@@ -1,15 +1,28 @@
 import { useData } from "@shared/hooks";
 import { IGenre } from "@shared/models";
-import { IGame } from "../games-model";
+import { IGame, IPlatform } from "../games-model";
 
-export const useGames = (selectedGenre: IGenre | null) =>
+interface IGamesFilters {
+  selectedGenre: IGenre | null;
+  selectedPlatform: IPlatform | null;
+  selectedSortOrder: string;
+}
+
+export const useGames = ({
+  selectedGenre,
+  selectedPlatform,
+  selectedSortOrder,
+}: IGamesFilters) =>
   useData<IGame>({
     endpoint: "/games",
-    requestConfig: selectedGenre
-      ? {
-          params: { genres: selectedGenre.id },
-        }
-      : {},
-    dependencies: [selectedGenre?.id],
+    requestConfig: {
+      params: {
+        genres: selectedGenre?.id,
+        platforms: selectedPlatform?.id,
+        ordering: selectedSortOrder,
+      },
+    },
+    dependencies: [selectedGenre?.id, selectedPlatform?.id, selectedSortOrder],
   });
+
 export default useGames;
