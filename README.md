@@ -1,2 +1,2 @@
-# games-explorer
- Games Explorer
+# Games Explorer
+A PokéAPI client in React.
