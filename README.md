@@ -1,2 +1,2 @@
 # Games Explorer
-A PokéAPI client in React.
+A RAWG-Games API client in React.
