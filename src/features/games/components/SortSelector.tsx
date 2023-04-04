@@ -8,7 +8,6 @@ interface Props {
 }
 
 export const SortSelector = ({ onSelect }: Props) => {
-  // TODO: move to store and use selector to get
   const [selectedSortLabel, setSelectedSortLabel] = useState("Relevance");
 
   const handleSelection = (sort: { value: string; label: string }) => {

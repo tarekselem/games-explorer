@@ -1,39 +1,21 @@
 import { Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import { CardContainer } from "@shared/components";
-import { IGenre } from "@shared/models";
-import { useState } from "react";
+import { useSearchActions } from "@shared/hooks";
 import {
   GameCard,
   SkeletonCard,
   PlatformSelector,
   SortSelector,
+  GameHeading,
 } from "./components";
-import GameHeading from "./components/GameHeading";
-import { IPlatform } from "./games-model";
 import { useGames } from "./hooks/";
 
-interface Props {
-  selectedGenre: IGenre | null;
-}
-
-export const GamesGrid = ({ selectedGenre }: Props) => {
-  // TODO: move to GameQuery state
-  const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(
-    null
-  );
-  const [selectedSortOrder, setSelectedSortOrder] = useState("");
-
-  const { data, error, isLoading } = useGames({
-    selectedGenre,
-    selectedPlatform,
-    selectedSortOrder,
-    searchText: "",
-  });
+export const GamesGrid = () => {
+  const { selectPlatform, setSortOrder } = useSearchActions();
+  const { data, error, isLoading, platform, genre, pageSize } = useGames();
 
   // TODO: move to a generic skeleton componenet
-  const skeletons = [...Array(12)];
-
-  // TODO: change on Genre changes
+  const skeletons = [...Array(pageSize)];
 
   if (error) {
     return <Text>{error}</Text>;
@@ -44,17 +26,17 @@ export const GamesGrid = ({ selectedGenre }: Props) => {
       <Box paddingLeft={2}>
         <GameHeading
           query={{
-            platformName: selectedPlatform?.name ?? "",
-            gerneName: "Action",
+            platformName: platform?.name ?? "",
+            gerneName: genre?.name ?? "",
           }}
         />
         <Flex marginBottom={5}>
           <Box marginRight={5}>
             <PlatformSelector
-              onSelect={(platform) => setSelectedPlatform(platform)}
+              onSelect={(platform) => selectPlatform(platform)}
             />
           </Box>
-          <SortSelector onSelect={(order) => setSelectedSortOrder(order)} />
+          <SortSelector onSelect={(order) => setSortOrder(order)} />
         </Flex>
       </Box>
 
@@ -63,17 +45,17 @@ export const GamesGrid = ({ selectedGenre }: Props) => {
         padding={3}
         spacing={6}
       >
-        {isLoading &&
-          skeletons.map((skleleton, i) => (
-            <CardContainer key={i}>
-              <SkeletonCard />
-            </CardContainer>
-          ))}
-        {data.map((game) => (
-          <CardContainer key={game.id}>
-            <GameCard game={game} />
-          </CardContainer>
-        ))}
+        {isLoading
+          ? skeletons.map((skleleton, i) => (
+              <CardContainer key={i}>
+                <SkeletonCard />
+              </CardContainer>
+            ))
+          : data.map((game) => (
+              <CardContainer key={game.id}>
+                <GameCard game={game} />
+              </CardContainer>
+            ))}
       </SimpleGrid>
     </>
   );
