@@ -7,25 +7,23 @@ import {
   SkeletonText,
   Button,
   Heading,
+  Text,
 } from "@chakra-ui/react";
 import { getCroppedImageUrl } from "@shared/utils/image-url";
+import { useSearchActions } from "@shared/hooks";
 import { IGenre } from "@shared/models";
 import { useGenres } from "./hooks";
 
-interface Prop {
-  onSelect: (genre: IGenre) => void;
-}
-
-export const GenresList = ({ onSelect }: Prop) => {
-  // TODO: move to store and use selector to get
-  const [selectedGenre, setselectedGenre] = useState<IGenre | null>(null);
+export const GenresList = () => {
+  const [selectedGenre, setselectedGenre] = useState<IGenre>();
+  const { selectGenre } = useSearchActions();
 
   const { data, error, isLoading } = useGenres();
   const skeletons = [...Array(15)];
 
   const handleSelect = (genre: IGenre) => {
     setselectedGenre(genre);
-    onSelect(genre);
+    selectGenre(genre);
   };
 
   if (error) return <></>;
@@ -63,7 +61,7 @@ export const GenresList = ({ onSelect }: Prop) => {
                   selectedGenre?.id === genre.id ? "green" : "normal"
                 }
               >
-                {genre.name}
+                <Text fontSize="md">{genre.name}</Text>
               </Button>
             </HStack>
           </ListItem>

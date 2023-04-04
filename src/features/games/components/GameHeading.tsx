@@ -9,7 +9,7 @@ interface IGamesQuery {
 interface Props {
   query: IGamesQuery;
 }
-const GameHeading = ({ query }: Props) => {
+export const GameHeading = ({ query }: Props) => {
   const heading = `${query.platformName || ""} ${query.gerneName || ""} Games`;
 
   return (
@@ -18,5 +18,3 @@ const GameHeading = ({ query }: Props) => {
     </Heading>
   );
 };
-
-export default GameHeading;

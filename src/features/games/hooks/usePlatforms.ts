@@ -1,5 +1,5 @@
 import { useData } from "@shared/hooks";
-import { IPlatform } from "../games-model";
+import { IPlatform } from "@shared/models";
 
 const usePlatform = () =>
   useData<IPlatform>({

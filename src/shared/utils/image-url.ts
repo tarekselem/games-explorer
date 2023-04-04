@@ -9,5 +9,3 @@ export const getCroppedImageUrl = (
   const urlParts = url.split("media/");
   return `${urlParts[0]}media/crop/${width}/${height}/${urlParts[1]}`;
 };
-
-export default { getCroppedImageUrl };

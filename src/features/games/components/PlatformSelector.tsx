@@ -1,7 +1,7 @@
-import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
-import { IPlatform } from "../games-model";
+import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { IPlatform } from "@shared/models";
 import usePlatform from "../hooks/usePlatforms";
 
 interface Props {
@@ -9,10 +9,7 @@ interface Props {
 }
 
 export const PlatformSelector = ({ onSelect }: Props) => {
-  // TODO: move to store and use selector to get
-  const [selectedPlatform, setSelectedPlatform] = useState<IPlatform | null>(
-    null
-  );
+  const [selectedPlatform, setSelectedPlatform] = useState<IPlatform>();
   const { data, error } = usePlatform();
 
   const handleSelection = (platform: IPlatform) => {
