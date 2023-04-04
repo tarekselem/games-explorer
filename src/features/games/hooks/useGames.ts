@@ -1,36 +1,43 @@
-import { useData } from "@shared/hooks";
-import { IGenre } from "@shared/models";
-import { IGame, IPlatform } from "../games-model";
+import { useData, useSearchContext } from "@shared/hooks";
+import { IGame } from "../games-model";
+import { ISearchFilters } from "@shared/models";
 
-interface IGamesFilters {
-  selectedGenre: IGenre | null;
-  selectedPlatform: IPlatform | null;
-  selectedSortOrder: string;
-  searchText: string;
-}
+export const useGames = () => {
+  const { searchFilters, genre, platform } = useSearchContext();
 
-export const useGames = ({
-  selectedGenre,
-  selectedPlatform,
-  selectedSortOrder,
-  searchText,
-}: IGamesFilters) =>
-  useData<IGame>({
+  const fetchResults = useData<IGame>({
     endpoint: "/games",
     requestConfig: {
-      params: {
-        genres: selectedGenre?.id,
-        platforms: selectedPlatform?.id,
-        ordering: selectedSortOrder,
-        search: searchText,
-      },
+      params: mainipulateParams(searchFilters),
     },
-    dependencies: [
-      selectedGenre?.id,
-      selectedPlatform?.id,
-      selectedSortOrder,
-      searchText,
-    ],
+    dependencies: [searchFilters],
   });
+
+  return {
+    ...fetchResults,
+    platform,
+    genre,
+    pageSize: searchFilters.pageSize,
+  };
+};
+
+const mainipulateParams = ({
+  pageSize,
+  sortOrder,
+  searchText,
+  genre,
+  platform,
+}: ISearchFilters): { [index: string]: unknown } => {
+  const params: { [index: string]: unknown } = {
+    page_size: pageSize,
+  };
+
+  if (sortOrder) params["ordering"] = sortOrder;
+  if (searchText) params["search"] = searchText;
+  if (genre) params["genres"] = genre.id;
+  if (platform) params["platforms"] = platform.id;
+
+  return params;
+};
 
 export default useGames;
