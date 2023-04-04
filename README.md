@@ -29,5 +29,6 @@ npm run desktop
 - [ ] Add api DTOs and mappers
 - [ ] Implement react-query
 - [ ] Use react-query cache
+- [ ] Add unit tests
 - [ ] Implement pager
 - [ ] Implement Game details page
