@@ -15,3 +15,14 @@ https://games-explorer.vercel.app/
 npm i
 npm run dev
 ```
+
+
+### Todo List
+- [x] Add search filters state
+- [x] Handled loading skeleton
+- [x] Build app as desktop app
+- [ ] Add api DTOs and mappers
+- [ ] Implement react-query
+- [ ] Use react-query cache
+- [ ] Implement pager
+- [ ] Implement Game details page
