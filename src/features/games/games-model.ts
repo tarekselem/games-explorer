@@ -1,8 +1,4 @@
-export interface IPlatform {
-  id: number;
-  name: string;
-  slug: string;
-}
+import { IPlatform } from "@shared/models";
 
 export interface IGame {
   id: number;
