@@ -46,8 +46,8 @@ export const GamesGrid = () => {
         spacing={6}
       >
         {isLoading
-          ? skeletons.map((skleleton, i) => (
-              <CardContainer key={i}>
+          ? skeletons.map((skleleton) => (
+              <CardContainer key={skleleton}>
                 <SkeletonCard />
               </CardContainer>
             ))

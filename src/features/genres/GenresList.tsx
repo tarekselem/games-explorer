@@ -35,8 +35,8 @@ export const GenresList = () => {
       </Heading>
       <List>
         {isLoading &&
-          skeletons.map((skleleton, i) => (
-            <ListItem key={i}>
+          skeletons.map((skleleton) => (
+            <ListItem key={skleleton}>
               <SkeletonText />
             </ListItem>
           ))}
