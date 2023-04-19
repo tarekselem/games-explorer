@@ -1,16 +1,20 @@
-import { useFetchQuery, useSearchContext } from "@shared/hooks";
-import { IGame } from "../games-model";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchContext } from "@shared/hooks";
+import { ApiClient } from "@api/api-client";
 import { ISearchFilters } from "@shared/models";
+import { IGame } from "../games-model";
 
 export const useGames = () => {
   const { searchFilters } = useSearchContext();
-  const GAMES_CACHE_KEY = ["games", searchFilters];
 
-  return useFetchQuery<IGame>(
-    "/games",
-    GAMES_CACHE_KEY,
-    mainipulateParams(searchFilters)
-  );
+  const GAMES_CACHE_KEY = ["games", searchFilters];
+  const apiClient = new ApiClient<IGame>("/games");
+
+  return useQuery<IGame[], Error>({
+    queryKey: GAMES_CACHE_KEY,
+    queryFn: () =>
+      apiClient.getAll({ params: mainipulateParams(searchFilters) }),
+  });
 };
 
 const mainipulateParams = ({
