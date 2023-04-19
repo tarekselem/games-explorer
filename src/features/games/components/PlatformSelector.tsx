@@ -17,9 +17,7 @@ export const PlatformSelector = ({ onSelect }: Props) => {
     setSelectedPlatform(platform);
   };
 
-  if (error) {
-    return <></>;
-  }
+  if (error) return <></>;
 
   return (
     <Menu>
@@ -27,7 +25,7 @@ export const PlatformSelector = ({ onSelect }: Props) => {
         {selectedPlatform?.name || "Platforms"}
       </MenuButton>
       <MenuList>
-        {data.map((platform) => (
+        {data?.map((platform) => (
           <MenuItem key={platform.id} onClick={() => handleSelection(platform)}>
             {platform.name}
           </MenuItem>

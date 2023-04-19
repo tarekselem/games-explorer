@@ -1,9 +1,9 @@
-import { useData } from "@shared/hooks";
+import { useFetchQuery } from "@shared/hooks";
 import { IPlatform } from "@shared/models";
 
+const PLATFORMS_CACHE_KEY = ["platforms"];
+
 const usePlatform = () =>
-  useData<IPlatform>({
-    endpoint: "/platforms/lists/parents",
-  });
+  useFetchQuery<IPlatform>("/platforms/lists/parents", PLATFORMS_CACHE_KEY);
 
 export default usePlatform;
