@@ -30,5 +30,5 @@ npm run desktop
 - [ ] Implement react-query
 - [ ] Use react-query cache
 - [ ] Add unit tests
-- [ ] Implement pager
+- [ ] Implement Virtual Scrolling
 - [ ] Implement Game details page
