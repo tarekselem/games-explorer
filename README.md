@@ -23,7 +23,7 @@ npm run desktop
 
 
 ### Todo List
-- [x] Add search filters state
+- [x] Add search by keyword to filters
 - [x] Handled loading skeleton
 - [x] Build app as desktop app
 - [ ] Add api DTOs and mappers
