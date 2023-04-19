@@ -8,7 +8,8 @@ interface FetchDataResponse<TEntity> {
 
 export const useFetchQuery = <TEntity>(
   endpoint: string,
-  queryKey: unknown[]
+  queryKey: unknown[],
+  params?: {}
 ) => {
   const controller = new AbortController();
   return useQuery<TEntity[], Error>({
@@ -16,6 +17,7 @@ export const useFetchQuery = <TEntity>(
     queryFn: () =>
       apiClient
         .get<FetchDataResponse<TEntity>>(endpoint, {
+          params,
           signal: controller.signal,
         })
         .then((res) => res.data?.results),

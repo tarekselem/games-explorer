@@ -1,23 +1,16 @@
-import { useData, useSearchContext } from "@shared/hooks";
+import { useFetchQuery, useSearchContext } from "@shared/hooks";
 import { IGame } from "../games-model";
 import { ISearchFilters } from "@shared/models";
 
 export const useGames = () => {
   const { searchFilters } = useSearchContext();
+  const GAMES_CACHE_KEY = ["games", searchFilters];
 
-  const fetchResults = useData<IGame>(
-    {
-      endpoint: "/games",
-      requestConfig: {
-        params: mainipulateParams(searchFilters),
-      },
-    },
-    [searchFilters]
+  return useFetchQuery<IGame>(
+    "/games",
+    GAMES_CACHE_KEY,
+    mainipulateParams(searchFilters)
   );
-
-  return {
-    ...fetchResults,
-  };
 };
 
 const mainipulateParams = ({
@@ -34,7 +27,7 @@ const mainipulateParams = ({
   if (sortOrder) params["ordering"] = sortOrder;
   if (searchText) params["search"] = searchText;
   if (genre) params["genres"] = genre.id;
-  if (platform) params["platforms"] = platform.id;
+  if (platform) params["parent_platforms"] = platform.id;
 
   return params;
 };

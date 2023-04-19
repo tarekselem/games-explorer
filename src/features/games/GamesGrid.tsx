@@ -18,9 +18,7 @@ export const GamesGrid = () => {
   // TODO: move to a generic skeleton componenet
   const skeletons = [...Array(pageSize)];
 
-  if (error) {
-    return <Text>{error}</Text>;
-  }
+  if (error) return <Text>{error.message}</Text>;
 
   return (
     <>
