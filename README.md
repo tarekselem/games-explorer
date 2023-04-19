@@ -1,4 +1,4 @@
-# Games Explorer
+# Games Explorer    <img width="200" height="150" alt="Work in progress...." src="https://github.com/tarekselem/games-explorer/blob/main/public/work-in-progress.png">
 A RAWG-Games API client in React.
 
 
@@ -20,7 +20,6 @@ npm i
 npm run dev
 npm run desktop
 ```
-
 
 ### Todo List
 - [x] Add search by keyword to filters
