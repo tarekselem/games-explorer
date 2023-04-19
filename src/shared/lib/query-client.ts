@@ -11,6 +11,8 @@ export const queryClient = new QueryClient({
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
       refetchOnMount: false,
+      // TODO: move to games hook only
+      keepPreviousData: true,
     },
   },
 });
