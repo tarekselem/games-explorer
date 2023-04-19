@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   HStack,
   List,
@@ -10,21 +9,18 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { getCroppedImageUrl } from "@shared/utils/image-url";
-import { useSearchActions } from "@shared/hooks";
+import { useSearchActions, useSearchContext } from "@shared/hooks";
 import { IGenre } from "@shared/models";
 import { useGenres } from "./hooks";
 
 export const GenresList = () => {
-  const [selectedGenre, setselectedGenre] = useState<IGenre>();
   const { selectGenre } = useSearchActions();
+  const { genre: selectedGenre } = useSearchContext();
 
   const { data, error, isLoading } = useGenres();
   const skeletons = [...Array(15)];
 
-  const handleSelect = (genre: IGenre) => {
-    setselectedGenre(genre);
-    selectGenre(genre);
-  };
+  const handleSelect = (genre: IGenre) => selectGenre(genre);
 
   if (error) return <></>;
 
@@ -35,13 +31,13 @@ export const GenresList = () => {
       </Heading>
       <List>
         {isLoading &&
-          skeletons.map((skleleton) => (
-            <ListItem key={skleleton}>
+          skeletons.map((skleleton, i) => (
+            <ListItem key={i}>
               <SkeletonText />
             </ListItem>
           ))}
 
-        {data.map((genre) => (
+        {data?.map((genre) => (
           <ListItem key={genre.id} paddingY={1}>
             <HStack>
               <Image
