@@ -18,6 +18,6 @@ export const useFetchQuery = <TEntity>(
         .get<FetchDataResponse<TEntity>>(endpoint, {
           signal: controller.signal,
         })
-        .then((res) => res.data.results),
+        .then((res) => res.data?.results),
   });
 };

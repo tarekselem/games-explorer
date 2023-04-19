@@ -8,13 +8,13 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <SearchStateProvider>
-      <QueryProvider>
-        <ChakraProvider theme={theme}>
-          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    <ChakraProvider theme={theme}>
+      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+      <SearchStateProvider>
+        <QueryProvider>
           <App />
-        </ChakraProvider>
-      </QueryProvider>
-    </SearchStateProvider>
+        </QueryProvider>
+      </SearchStateProvider>
+    </ChakraProvider>
   </React.StrictMode>
 );
