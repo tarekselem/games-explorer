@@ -10,14 +10,13 @@ interface FetchDataResponse<TEntity> {
 interface IConfigs {
   endpoint: string;
   requestConfig?: AxiosRequestConfig;
-  dependencies?: unknown[];
 }
 
-export const useData = <TEntity>({
-  endpoint,
-  requestConfig,
-  dependencies,
-}: IConfigs) => {
+// TODO: should be replaced with react-query
+export const useData = <TEntity>(
+  { endpoint, requestConfig }: IConfigs,
+  dependencies?: unknown[]
+) => {
   const [data, setData] = useState<TEntity[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);

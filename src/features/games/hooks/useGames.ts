@@ -5,13 +5,15 @@ import { ISearchFilters } from "@shared/models";
 export const useGames = () => {
   const { searchFilters, genre, platform } = useSearchContext();
 
-  const fetchResults = useData<IGame>({
-    endpoint: "/games",
-    requestConfig: {
-      params: mainipulateParams(searchFilters),
+  const fetchResults = useData<IGame>(
+    {
+      endpoint: "/games",
+      requestConfig: {
+        params: mainipulateParams(searchFilters),
+      },
     },
-    dependencies: [searchFilters],
-  });
+    [searchFilters]
+  );
 
   return {
     ...fetchResults,
