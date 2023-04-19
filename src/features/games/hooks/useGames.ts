@@ -3,7 +3,7 @@ import { IGame } from "../games-model";
 import { ISearchFilters } from "@shared/models";
 
 export const useGames = () => {
-  const { searchFilters, genre, platform } = useSearchContext();
+  const { searchFilters } = useSearchContext();
 
   const fetchResults = useData<IGame>(
     {
@@ -17,9 +17,6 @@ export const useGames = () => {
 
   return {
     ...fetchResults,
-    platform,
-    genre,
-    pageSize: searchFilters.pageSize,
   };
 };
 

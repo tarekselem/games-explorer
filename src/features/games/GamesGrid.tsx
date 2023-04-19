@@ -1,6 +1,6 @@
 import { Box, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import { CardContainer } from "@shared/components";
-import { useSearchActions } from "@shared/hooks";
+import { useSearchActions, useSearchContext } from "@shared/hooks";
 import {
   GameCard,
   SkeletonCard,
@@ -12,7 +12,8 @@ import { useGames } from "./hooks/";
 
 export const GamesGrid = () => {
   const { selectPlatform, setSortOrder } = useSearchActions();
-  const { data, error, isLoading, platform, genre, pageSize } = useGames();
+  const { pageSize } = useSearchContext();
+  const { data, error, isLoading } = useGames();
 
   // TODO: move to a generic skeleton componenet
   const skeletons = [...Array(pageSize)];
@@ -24,12 +25,7 @@ export const GamesGrid = () => {
   return (
     <>
       <Box paddingLeft={2}>
-        <GameHeading
-          query={{
-            platformName: platform?.name ?? "",
-            gerneName: genre?.name ?? "",
-          }}
-        />
+        <GameHeading />
         <Flex marginBottom={5}>
           <Box marginRight={5}>
             <PlatformSelector
