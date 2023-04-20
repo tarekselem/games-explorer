@@ -6,7 +6,7 @@ interface Props {
   onSearch: (searchText: string) => void;
 }
 
-const SearchInput = ({ onSearch }: Props) => {
+export const SearchInput = ({ onSearch }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
@@ -31,5 +31,3 @@ const SearchInput = ({ onSearch }: Props) => {
     </form>
   );
 };
-
-export default SearchInput;
