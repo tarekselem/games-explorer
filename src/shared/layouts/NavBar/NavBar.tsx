@@ -1,8 +1,7 @@
 import { HStack, Image } from "@chakra-ui/react";
 import { useSearchActions } from "@shared/hooks";
-import logo from "src/assets/logo.webp";
-import ColorModeSwitch from "./ColorModeSwitch";
-import SearchInput from "./SearchInput";
+import logo from "src/assets/logo.png";
+import { SearchInput, ColorModeSwitch } from "./components";
 
 export const NavBar = () => {
   const { setSearchText } = useSearchActions();
