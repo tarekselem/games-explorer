@@ -25,9 +25,9 @@ npm run desktop
 - [x] Add search by keyword to filters
 - [x] Handled loading skeleton
 - [x] Build app as desktop app
+- [x] Implement react-query
+- [x] Configure react-query cache
 - [ ] Add api DTOs and mappers
-- [ ] Implement react-query
-- [ ] Use react-query cache
 - [ ] Add unit tests
 - [ ] Implement Virtual Scrolling
 - [ ] Implement Game details page
