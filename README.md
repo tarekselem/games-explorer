@@ -23,8 +23,8 @@ npm run desktop
 
 ### Todo List
 - [x] Add search by keyword to filters
-- [x] Handled loading skeleton
-- [x] Build app as desktop app
+- [x] Handle loading skeleton
+- [x] Build app as a desktop app
 - [x] Implement react-query
 - [x] Configure react-query cache
 - [ ] Add api DTOs and mappers
