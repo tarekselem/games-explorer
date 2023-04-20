@@ -1,16 +1,10 @@
 import { Heading } from "@chakra-ui/react";
+import { useSearchContext } from "@shared/hooks";
 
-//TODO: move to state
-interface IGamesQuery {
-  platformName: string;
-  gerneName: string;
-}
+export const GameHeading = () => {
+  const { genre, platform } = useSearchContext();
 
-interface Props {
-  query: IGamesQuery;
-}
-export const GameHeading = ({ query }: Props) => {
-  const heading = `${query.platformName || ""} ${query.gerneName || ""} Games`;
+  const heading = `${platform?.name || ""} ${genre?.name || ""} Games`;
 
   return (
     <Heading as="h1" marginY={5} fontSize="5xl">

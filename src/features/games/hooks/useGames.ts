@@ -1,26 +1,20 @@
-import { useData, useSearchContext } from "@shared/hooks";
-import { IGame } from "../games-model";
+import { useQuery } from "@tanstack/react-query";
+import { useSearchContext } from "@shared/hooks";
+import { ApiClient } from "@api/api-client";
 import { ISearchFilters } from "@shared/models";
+import { IGame } from "../games-model";
 
 export const useGames = () => {
-  const { searchFilters, genre, platform } = useSearchContext();
+  const { searchFilters } = useSearchContext();
 
-  const fetchResults = useData<IGame>(
-    {
-      endpoint: "/games",
-      requestConfig: {
-        params: mainipulateParams(searchFilters),
-      },
-    },
-    [searchFilters]
-  );
+  const GAMES_CACHE_KEY = ["games", searchFilters];
+  const apiClient = new ApiClient<IGame>("/games");
 
-  return {
-    ...fetchResults,
-    platform,
-    genre,
-    pageSize: searchFilters.pageSize,
-  };
+  return useQuery<IGame[], Error>({
+    queryKey: GAMES_CACHE_KEY,
+    queryFn: () =>
+      apiClient.getAll({ params: mainipulateParams(searchFilters) }),
+  });
 };
 
 const mainipulateParams = ({
@@ -37,7 +31,7 @@ const mainipulateParams = ({
   if (sortOrder) params["ordering"] = sortOrder;
   if (searchText) params["search"] = searchText;
   if (genre) params["genres"] = genre.id;
-  if (platform) params["platforms"] = platform.id;
+  if (platform) params["parent_platforms"] = platform.id;
 
   return params;
 };

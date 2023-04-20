@@ -10,6 +10,7 @@ export const useSearchContext = () => {
       searchFilters: selector.selectSearchFilters(state),
       genre: selector.getSelectedGenre(state),
       platform: selector.getSelectedPlatform(state),
+      pageSize: selector.getPageSize(state),
     };
   }, [state]);
 
