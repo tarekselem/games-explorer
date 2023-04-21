@@ -1,3 +1,4 @@
+import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
 import { ApiClient } from "@api/api-client";
 import { IPlatform } from "@shared/models";
@@ -9,6 +10,7 @@ const usePlatform = () =>
   useQuery<IPlatform[], Error>({
     queryKey: PLATFORMS_CACHE_KEY,
     queryFn: apiClient.getAll,
+    staleTime: ms("24h"),
   });
 
 export default usePlatform;

@@ -1,3 +1,4 @@
+import ms from "ms";
 import { ApiClient } from "@api/api-client";
 import { IGenre } from "@shared/models";
 import { useQuery } from "@tanstack/react-query";
@@ -9,6 +10,7 @@ export const useGenres = () =>
   useQuery<IGenre[], Error>({
     queryKey: GENRES_CACHE_KEY,
     queryFn: apiClient.getAll,
+    staleTime: ms("24h"),
   });
 
 export default useGenres;
