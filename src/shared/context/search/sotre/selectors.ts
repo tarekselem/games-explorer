@@ -13,8 +13,8 @@ export const selectSearchFilters = (state: ISearchState): ISearchFilters => {
   return {
     sortOrder: state.sortOrder,
     searchText: state.searchText,
-    genre: state.selectedGenre,
-    platform: state.selectedPlatform,
+    genreId: state.selectedGenre?.id,
+    platformId: state.selectedPlatform?.id,
     pageSize: state.pageSize,
   };
 };

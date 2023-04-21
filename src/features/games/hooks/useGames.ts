@@ -1,18 +1,16 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
-import { useSearchContext } from "@shared/hooks";
 import { ApiClient, FetchDataResponse } from "@api/api-client";
+import { useSearchContext } from "@shared/hooks";
 import { ISearchFilters } from "@shared/models";
 import { IGame } from "../games-model";
 
 export const useGames = () => {
   const { searchFilters } = useSearchContext();
-
-  const GAMES_CACHE_KEY = ["games", searchFilters];
   const apiClient = new ApiClient<IGame>("/games");
 
   const infiniteQuery = useInfiniteQuery<FetchDataResponse<IGame>, Error>({
-    queryKey: GAMES_CACHE_KEY,
+    queryKey: GAMES_CACHE_KEY(searchFilters),
     queryFn: ({ pageParam = 1 }) =>
       apiClient.getAllPagination({
         params: mainipulateParams({ ...searchFilters, page: pageParam }),
@@ -52,5 +50,11 @@ const mainipulateParams = ({
 
   return params;
 };
+
+const GAMES_CACHE_KEY = ({
+  searchText,
+  platformId,
+  genreId,
+}: ISearchFilters) => ["games", { searchText, platformId, genreId }];
 
 export default useGames;
