@@ -1,7 +1,8 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-interface FetchDataResponse<TEntity> {
+export interface FetchDataResponse<TEntity> {
   count: number;
+  next: string | null;
   results: TEntity[];
 }
 
@@ -26,4 +27,9 @@ export class ApiClient<TEntity> {
     axiosInstance
       .get<FetchDataResponse<TEntity>>(this.endpoint, configs)
       .then((res) => res.data.results);
+
+  getAllPagination = (configs?: AxiosRequestConfig) =>
+    axiosInstance
+      .get<FetchDataResponse<TEntity>>(this.endpoint, configs)
+      .then((res) => res.data);
 }
