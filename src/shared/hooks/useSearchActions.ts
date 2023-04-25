@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { IGenre, IPlatform } from "@shared/models";
-import SearchContext from "../context/search/search-context";
-import * as actions from "../context/search/sotre/actions";
+import SearchContext from "../contexts/search/search-context";
+import * as actions from "../contexts/search/sotre/actions";
 
 export const useSearchActions = () => {
   const { dispatch } = useContext(SearchContext);

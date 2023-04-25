@@ -9,13 +9,13 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { getCroppedImageUrl } from "@shared/utils/image-url";
-import { useSearchActions, useSearchContext } from "@shared/hooks";
+import { useSearchActions, useSearchState } from "@shared/hooks";
 import { IGenre } from "@shared/models";
 import { useGenres } from "./hooks";
 
 export const GenresList = () => {
   const { selectGenre } = useSearchActions();
-  const { genre: selectedGenre } = useSearchContext();
+  const { genre: selectedGenre } = useSearchState();
 
   const { data, error, isLoading } = useGenres();
   const skeletons = [...Array(15)];

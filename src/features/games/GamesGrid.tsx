@@ -1,7 +1,7 @@
 import { Box, Flex, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CardContainer } from "@shared/components";
-import { useSearchActions, useSearchContext } from "@shared/hooks";
+import { useSearchActions, useSearchState } from "@shared/hooks";
 import {
   GameCard,
   SkeletonCard,
@@ -13,7 +13,7 @@ import { useGames } from "./hooks/";
 
 export const GamesGrid = () => {
   const { selectPlatform, setSortOrder } = useSearchActions();
-  const { pageSize } = useSearchContext();
+  const { pageSize } = useSearchState();
   const { data, totalCount, error, isLoading, hasNextPage, fetchNextPage } =
     useGames();
 

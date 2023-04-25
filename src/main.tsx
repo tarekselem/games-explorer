@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import { SearchStateProvider } from "@shared/context/search";
+import { SearchStateProvider } from "@shared/contexts/search";
 import { theme, QueryProvider } from "@shared/lib";
 import App from "./App";
 import "./index.css";

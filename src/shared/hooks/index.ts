@@ -1,2 +1,2 @@
-export * from "./useSearchContext";
+export * from "./useSearchState";
 export * from "./useSearchActions";

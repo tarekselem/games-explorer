@@ -1,8 +1,8 @@
 import { Heading } from "@chakra-ui/react";
-import { useSearchContext } from "@shared/hooks";
+import { useSearchState } from "@shared/hooks";
 
 export const GameHeading = () => {
-  const { genre, platform } = useSearchContext();
+  const { genre, platform } = useSearchState();
 
   const heading = `${platform?.name || ""} ${genre?.name || ""} Games`;
 
