@@ -29,5 +29,5 @@ npm run desktop
 - [x] Configure react-query cache
 - [ ] Add api DTOs and mappers
 - [ ] Add unit tests
-- [ ] Implement Virtual Scrolling
+- [x] Implement Virtual Scrolling
 - [ ] Implement Game details page
