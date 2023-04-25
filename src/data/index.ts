@@ -1,2 +1,2 @@
-export * from "./emojis";
+export * from "./stars-rate";
 export * from "./sort-orders";
