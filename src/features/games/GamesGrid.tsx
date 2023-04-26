@@ -1,7 +1,7 @@
 import { Box, Flex, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CardContainer } from "@shared/components";
-import { useSearchActions, useSearchState } from "@shared/hooks";
+import { useSearchQueryStore } from "@shared/hooks";
 import {
   GameCard,
   SkeletonCard,
@@ -12,13 +12,13 @@ import {
 import { useGames } from "./hooks/";
 
 export const GamesGrid = () => {
-  const { selectPlatform, setSortOrder } = useSearchActions();
-  const { pageSize } = useSearchState();
+  const { searchQuery, setPlatformId } = useSearchQueryStore();
+
   const { data, totalCount, error, isLoading, hasNextPage, fetchNextPage } =
     useGames();
 
   // TODO: move to a generic skeleton componenet
-  const skeletons = [...Array(pageSize)];
+  const skeletons = [...Array(searchQuery.pageSize)];
 
   if (error) return <Text>{error.message}</Text>;
 
@@ -29,10 +29,11 @@ export const GamesGrid = () => {
         <Flex marginBottom={5}>
           <Box marginRight={5}>
             <PlatformSelector
-              onSelect={(platform) => selectPlatform(platform)}
+              //TODO: refactor by dispatching the action inside
+              onSelect={(platform) => setPlatformId(platform.id)}
             />
           </Box>
-          <SortSelector onSelect={(order) => setSortOrder(order)} />
+          <SortSelector />
         </Flex>
       </Box>
       <InfiniteScroll

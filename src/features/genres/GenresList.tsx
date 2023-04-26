@@ -9,18 +9,21 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { getCroppedImageUrl } from "@shared/utils/image-url";
-import { useSearchActions, useSearchState } from "@shared/hooks";
+import { useSearchQueryStore } from "@shared/hooks";
 import { IGenre } from "@shared/models";
 import { useGenres } from "./hooks";
 
 export const GenresList = () => {
-  const { selectGenre } = useSearchActions();
-  const { genre: selectedGenre } = useSearchState();
+  console.log("GenresList rendered");
 
   const { data, error, isLoading } = useGenres();
+  const { searchQuery, setGenreId } = useSearchQueryStore((store) => {
+    return { searchQuery: store.searchQuery, setGenreId: store.setGenreId };
+  });
+  const { genreId } = searchQuery;
   const skeletons = [...Array(15)];
 
-  const handleSelect = (genre: IGenre) => selectGenre(genre);
+  const handleSelect = (genre: IGenre) => setGenreId(genre.id);
 
   if (error) return <></>;
 
@@ -52,10 +55,8 @@ export const GenresList = () => {
                 variant="link"
                 whiteSpace="normal"
                 textAlign="left"
-                fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
-                colorScheme={
-                  selectedGenre?.id === genre.id ? "green" : "normal"
-                }
+                fontWeight={genreId === genre.id ? "bold" : "normal"}
+                colorScheme={genreId === genre.id ? "green" : "normal"}
               >
                 <Text fontSize="md">{genre.name}</Text>
               </Button>

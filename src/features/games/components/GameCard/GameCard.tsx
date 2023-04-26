@@ -10,7 +10,8 @@ interface Props {
 }
 export const GameCard = ({ game }: Props) => {
   // TODO: improve by adding mappers
-  const platforms = game.parent_platforms.map((parent) => parent.platform);
+  const platforms =
+    game.parent_platforms?.map((parent) => parent.platform) ?? [];
 
   return (
     <Card>
