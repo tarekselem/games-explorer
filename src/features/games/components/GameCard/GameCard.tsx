@@ -17,17 +17,17 @@ export const GameCard = ({ game }: Props) => {
 
   return (
     <Card>
-      <Image src={getCroppedImageUrl(game.background_image)} />
-      <CardBody>
-        <HStack justifyContent="space-between" marginBottom={3}>
-          <PlatformsList platforms={platforms} />
-          <Stars rating={game.rating_top} />
-          <CriticScore score={game.metacritic} />
-        </HStack>
-        <Heading fontSize="2xl">
-          <Link to={`/games/${game.slug}`}>{game.name}</Link>
-        </Heading>
-      </CardBody>
+      <Link to={`/games/${game.slug}`}>
+        <Image src={getCroppedImageUrl(game.background_image)} />
+        <CardBody>
+          <HStack justifyContent="space-between" marginBottom={3}>
+            <PlatformsList platforms={platforms} />
+            <Stars rating={game.rating_top} />
+            <CriticScore score={game.metacritic} />
+          </HStack>
+          <Heading fontSize="2xl">{game.name}</Heading>
+        </CardBody>
+      </Link>
     </Card>
   );
 };
