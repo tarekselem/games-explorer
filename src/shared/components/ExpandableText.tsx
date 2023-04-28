@@ -31,12 +31,6 @@ export const ExpandableText = ({ children, maxLength = 300 }: Props) => {
           {expanded ? "Show Less" : "Read More"}
         </Button>
       </Text>
-
-      {/* {!isTruncatedDescription && (
-        <Button onClick={() => setDescription((prev) => truncate())}>
-          {isTruncatedDescription ? "Show More" : "Show Less"}
-        </Button>
-      )} */}
     </>
   );
 };

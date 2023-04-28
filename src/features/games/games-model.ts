@@ -19,3 +19,10 @@ export interface IGame {
   metacritic: number;
   rating_top: number;
 }
+
+export interface IMovie {
+  id: number;
+  name: string;
+  preview: string;
+  data: { max: string; 480: string };
+}
