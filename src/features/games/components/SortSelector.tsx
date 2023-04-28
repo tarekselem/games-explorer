@@ -1,17 +1,15 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { useSearchQueryStore } from "@shared/hooks";
 import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { sortOrders } from "src/data";
 
-interface Props {
-  onSelect: (sortOrder: string) => void;
-}
-
-export const SortSelector = ({ onSelect }: Props) => {
+export const SortSelector = () => {
   const [selectedSortLabel, setSelectedSortLabel] = useState("Relevance");
+  const setSortOrder = useSearchQueryStore(({ setSortOrder }) => setSortOrder);
 
   const handleSelection = (sort: { value: string; label: string }) => {
-    onSelect(sort.value);
+    setSortOrder(sort.value);
     setSelectedSortLabel(sort.label);
   };
 

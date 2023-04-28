@@ -1,20 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import { SearchStateProvider } from "@shared/contexts/search";
 import { theme, QueryProvider } from "@shared/lib";
-import App from "./App";
+import router from "./routes";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <SearchStateProvider>
-        <QueryProvider>
-          <App />
-        </QueryProvider>
-      </SearchStateProvider>
+      <QueryProvider>
+        <RouterProvider router={router} />
+      </QueryProvider>
     </ChakraProvider>
   </React.StrictMode>
 );

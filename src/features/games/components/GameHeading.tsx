@@ -1,8 +1,15 @@
 import { Heading } from "@chakra-ui/react";
-import { useSearchState } from "@shared/hooks";
+import { CACHE_KEYS } from "@shared/constants";
+import { useSearchQueryStore, useStateLookup } from "@shared/hooks";
+import { IGenre, IPlatform } from "@shared/models";
 
 export const GameHeading = () => {
-  const { genre, platform } = useSearchState();
+  const { searchQuery } = useSearchQueryStore();
+  const genre = useStateLookup<IGenre>(CACHE_KEYS.GENRES, searchQuery.genreId!);
+  const platform = useStateLookup<IPlatform>(
+    CACHE_KEYS.PLATFORMS,
+    searchQuery.platformId!
+  );
 
   const heading = `${platform?.name || ""} ${genre?.name || ""} Games`;
 
