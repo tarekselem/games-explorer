@@ -32,4 +32,9 @@ export class ApiClient<TEntity> {
     axiosInstance
       .get<FetchDataResponse<TEntity>>(this.endpoint, configs)
       .then((res) => res.data);
+
+  get = (id: string | number, configs?: AxiosRequestConfig) =>
+    axiosInstance
+      .get<TEntity>(`${this.endpoint}/${id}`, configs)
+      .then((res) => res.data);
 }

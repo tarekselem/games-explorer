@@ -2,7 +2,6 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
 import { ApiClient, FetchDataResponse } from "@api/api-client";
 import { SearchFilters, useSearchQueryStore } from "@shared/hooks";
-import { ISearchFilters } from "@shared/models";
 import { CACHE_KEYS } from "@shared/constants";
 import { IGame } from "../games-model";
 
@@ -44,7 +43,6 @@ const mainipulateParams = ({
   genreId,
   platformId,
 }: SearchFilters): { [index: string]: unknown } => {
-  console.log(sortOrder);
   const params: { [index: string]: unknown } = {
     page,
     page_size: pageSize,
@@ -62,6 +60,6 @@ const GAMES_CACHE_KEY = ({
   searchText,
   platformId,
   genreId,
-}: ISearchFilters) => [CACHE_KEYS.GAMES, { searchText, platformId, genreId }];
+}: SearchFilters) => [CACHE_KEYS.GAMES, { searchText, platformId, genreId }];
 
 export default useGames;
