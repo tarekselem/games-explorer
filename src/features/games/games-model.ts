@@ -26,3 +26,10 @@ export interface IMovie {
   preview: string;
   data: { max: string; 480: string };
 }
+
+export interface IScreenshot {
+  id: number;
+  image: string;
+  width: number;
+  height: number;
+}
