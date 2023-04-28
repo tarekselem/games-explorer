@@ -1,7 +1,9 @@
 import { Heading } from "@chakra-ui/react";
 import { ExpandableText } from "@shared/components";
-import { GameAttributes, GameTrailer } from "./components";
-import { IGame } from "./games-model";
+import { IGame } from "../../games-model";
+import GameAttributes from "./GameAttributes";
+import GameScreenshots from "./GameScreenshots";
+import GameTrailer from "./GameTrailer";
 
 interface Props {
   game: IGame;
@@ -14,6 +16,7 @@ export const GameDetails = ({ game }: Props) => {
       <ExpandableText>{game.description_raw}</ExpandableText>
       <GameAttributes game={game} />
       <GameTrailer gameId={game.id} />
+      <GameScreenshots gameId={game.id} />
     </>
   );
 };

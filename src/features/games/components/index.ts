@@ -3,5 +3,4 @@ export * from "./SkeletonCard";
 export * from "./PlatformSelector";
 export * from "./SortSelector";
 export * from "./GameHeading";
-export * from "./GameAttributes";
-export * from "./GameTrailer";
+export * from "./GameDetails";

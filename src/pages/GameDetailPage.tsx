@@ -1,7 +1,7 @@
 import { Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { useGame } from "@features/games/hooks";
-import GameDetails from "@features/games/GameDetails";
+import { GameDetails } from "@features/games/components";
 
 export const GameDetailPage = () => {
   const { slug } = useParams();

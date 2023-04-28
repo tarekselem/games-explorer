@@ -1,13 +1,13 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import { DefinitionItem } from "@shared/components";
-import CriticScore from "./GameCard/CriticScore";
-import { IGame } from "../games-model";
+import CriticScore from "../GameCard/CriticScore";
+import { IGame } from "../../games-model";
 
 interface Props {
   game: IGame;
 }
 
-export const GameAttributes = ({ game }: Props) => {
+const GameAttributes = ({ game }: Props) => {
   return (
     <SimpleGrid columns={2} as="dl">
       <DefinitionItem term="Platforms">

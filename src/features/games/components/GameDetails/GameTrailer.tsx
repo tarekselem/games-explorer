@@ -1,11 +1,11 @@
 import { Spinner } from "@chakra-ui/react";
-import useMovies from "../hooks/useMovies";
+import useMovies from "../../hooks/useMovies";
 
 interface Props {
   gameId: number;
 }
 
-export const GameTrailer = ({ gameId }: Props) => {
+const GameTrailer = ({ gameId }: Props) => {
   const { data, isLoading, error } = useMovies(gameId);
 
   if (isLoading) return <Spinner />;
