@@ -14,8 +14,6 @@ import { IGenre } from "@shared/models";
 import { useGenres } from "./hooks";
 
 export const GenresList = () => {
-  console.log("GenresList rendered");
-
   const { data, error, isLoading } = useGenres();
   const { searchQuery, setGenreId } = useSearchQueryStore((store) => {
     return { searchQuery: store.searchQuery, setGenreId: store.setGenreId };
