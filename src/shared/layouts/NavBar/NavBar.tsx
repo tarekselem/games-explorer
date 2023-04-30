@@ -10,7 +10,7 @@ export const NavBar = () => {
   return (
     <HStack padding="10px">
       <Link to={"./"}>
-        <Image src={logo} boxSize="60px" objectFit="contain" />
+        <Image src={logo} alt="Games-Hub" boxSize="60px" objectFit="contain" />
       </Link>
 
       <SearchInput onSearch={(searchText) => setSearchText(searchText)} />

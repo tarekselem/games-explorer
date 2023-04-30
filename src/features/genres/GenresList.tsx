@@ -46,6 +46,7 @@ export const GenresList = () => {
                 boxSize={8}
                 borderRadius={8}
                 fit="cover"
+                alt={genre.name}
                 src={getCroppedImageUrl(genre.image_background)}
               />
               <Button

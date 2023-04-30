@@ -5,7 +5,6 @@ import { IGame } from "../../games-model";
 import { PlatformsList } from "./PlatformsList";
 import { CriticScore } from "./CriticScore";
 import Stars from "./Stars";
-import { transform } from "framer-motion";
 
 interface Props {
   game: IGame;
@@ -19,8 +18,7 @@ export const GameCard = ({ game }: Props) => {
     <Card maxWidth="600px">
       <Link to={`/games/${game.slug}`}>
         <Image
-          maxWidth={600}
-          maxHeight={400}
+          alt={game.name}
           src={getCroppedImageUrl(game.background_image)}
         />
         <CardBody>
