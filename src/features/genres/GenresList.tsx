@@ -8,6 +8,7 @@ import {
   Heading,
   Text,
 } from "@chakra-ui/react";
+import { shallow } from "zustand/shallow";
 import { getCroppedImageUrl } from "@shared/utils/image-url";
 import { useSearchQueryStore } from "@shared/hooks";
 import { IGenre } from "@shared/models";
@@ -15,10 +16,10 @@ import { useGenres } from "./hooks";
 
 export const GenresList = () => {
   const { data, error, isLoading } = useGenres();
-  const { searchQuery, setGenreId } = useSearchQueryStore((store) => {
-    return { searchQuery: store.searchQuery, setGenreId: store.setGenreId };
-  });
-  const { genreId } = searchQuery;
+  const [genreId, setGenreId] = useSearchQueryStore(
+    (store) => [store.searchQuery.genreId, store.setGenreId],
+    shallow
+  );
   const skeletons = [...Array(15)];
 
   const handleSelect = (genre: IGenre) => setGenreId(genre.id);

@@ -1,5 +1,6 @@
 import { Box, Flex, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { shallow } from "zustand/shallow";
 import { CardContainer } from "@shared/components";
 import { useSearchQueryStore } from "@shared/hooks";
 import {
@@ -12,13 +13,15 @@ import {
 import { useGames } from "./hooks/";
 
 export const GamesGrid = () => {
-  const { searchQuery, setPlatformId } = useSearchQueryStore();
-
+  const [pageSize, setPlatformId] = useSearchQueryStore(
+    (store) => [store.searchQuery.pageSize, store.setPlatformId],
+    shallow
+  );
   const { data, totalCount, error, isLoading, hasNextPage, fetchNextPage } =
     useGames();
 
   // TODO: move to a generic skeleton componenet
-  const skeletons = [...Array(searchQuery.pageSize)];
+  const skeletons = [...Array(pageSize)];
 
   if (error) return <Text>{error.message}</Text>;
 

@@ -6,7 +6,7 @@ import { sortOrders } from "src/data";
 
 export const SortSelector = () => {
   const [selectedSortLabel, setSelectedSortLabel] = useState("Relevance");
-  const setSortOrder = useSearchQueryStore(({ setSortOrder }) => setSortOrder);
+  const setSortOrder = useSearchQueryStore((store) => store.setSortOrder);
 
   const handleSelection = (sort: { value: string; label: string }) => {
     setSortOrder(sort.value);

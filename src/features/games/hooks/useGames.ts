@@ -1,12 +1,16 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
+import { shallow } from "zustand/shallow";
 import { ApiClient, FetchDataResponse } from "@api/api-client";
 import { SearchFilters, useSearchQueryStore } from "@shared/hooks";
 import { CACHE_KEYS } from "@shared/constants";
 import { IGame } from "../games-model";
 
 export const useGames = () => {
-  const { searchQuery } = useSearchQueryStore();
+  const searchQuery = useSearchQueryStore(
+    (store) => store.searchQuery,
+    shallow
+  );
   const apiClient = new ApiClient<IGame>("/games");
 
   const infiniteQuery = useInfiniteQuery<FetchDataResponse<IGame>, Error>({

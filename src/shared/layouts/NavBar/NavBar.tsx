@@ -5,9 +5,7 @@ import logo from "src/assets/logo.png";
 import { SearchInput, ColorModeSwitch } from "./components";
 
 export const NavBar = () => {
-  const { setSearchText } = useSearchQueryStore((store) => {
-    return { setSearchText: store.setSearchText };
-  });
+  const setSearchText = useSearchQueryStore((store) => store.setSearchText);
 
   return (
     <HStack padding="10px">
