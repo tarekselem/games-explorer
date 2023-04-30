@@ -11,6 +11,7 @@ export const useGames = () => {
     (store) => store.searchQuery,
     shallow
   );
+  console.log("searchQuery", searchQuery);
   const apiClient = new ApiClient<IGame>("/games");
 
   const infiniteQuery = useInfiniteQuery<FetchDataResponse<IGame>, Error>({
@@ -47,6 +48,8 @@ const mainipulateParams = ({
   genreId,
   platformId,
 }: SearchFilters): { [index: string]: unknown } => {
+  console.log("sortOrder", sortOrder);
+  console.log("platformId", platformId);
   const params: { [index: string]: unknown } = {
     page,
     page_size: pageSize,
