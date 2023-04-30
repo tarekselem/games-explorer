@@ -16,9 +16,13 @@ export const GameCard = ({ game }: Props) => {
     game.parent_platforms?.map((parent) => parent.platform) ?? [];
 
   return (
-    <Card>
+    <Card maxWidth="600px">
       <Link to={`/games/${game.slug}`}>
-        <Image src={getCroppedImageUrl(game.background_image)} />
+        <Image
+          maxWidth={600}
+          maxHeight={400}
+          src={getCroppedImageUrl(game.background_image)}
+        />
         <CardBody>
           <HStack justifyContent="space-between" marginBottom={3}>
             <PlatformsList platforms={platforms} />
