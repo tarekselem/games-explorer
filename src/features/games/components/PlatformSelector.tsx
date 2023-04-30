@@ -2,18 +2,16 @@ import { useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { IPlatform } from "@shared/models";
+import { useSearchQueryStore } from "@shared/hooks";
 import usePlatform from "../hooks/usePlatforms";
 
-interface Props {
-  onSelect: (platform: IPlatform) => void;
-}
-
-export const PlatformSelector = ({ onSelect }: Props) => {
+export const PlatformSelector = () => {
   const [selectedPlatform, setSelectedPlatform] = useState<IPlatform>();
+  const setPlatformId = useSearchQueryStore((store) => store.setPlatformId);
   const { data, error } = usePlatform();
 
   const handleSelection = (platform: IPlatform) => {
-    onSelect(platform);
+    setPlatformId(platform.id);
     setSelectedPlatform(platform);
   };
 

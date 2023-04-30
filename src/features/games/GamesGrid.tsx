@@ -1,22 +1,12 @@
-import { Box, Flex, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { shallow } from "zustand/shallow";
 import { CardContainer } from "@shared/components";
 import { useSearchQueryStore } from "@shared/hooks";
-import {
-  GameCard,
-  SkeletonCard,
-  PlatformSelector,
-  SortSelector,
-  GameHeading,
-} from "./components";
+import { GameCard, SkeletonCard, GridHeader } from "./components";
 import { useGames } from "./hooks/";
 
 export const GamesGrid = () => {
-  const [pageSize, setPlatformId] = useSearchQueryStore(
-    (store) => [store.searchQuery.pageSize, store.setPlatformId],
-    shallow
-  );
+  const pageSize = useSearchQueryStore((store) => store.searchQuery.pageSize);
   const { data, totalCount, error, isLoading, hasNextPage, fetchNextPage } =
     useGames();
 
@@ -27,18 +17,8 @@ export const GamesGrid = () => {
 
   return (
     <>
-      <Box paddingLeft={2}>
-        <GameHeading />
-        <Flex marginBottom={5}>
-          <Box marginRight={5}>
-            <PlatformSelector
-              //TODO: refactor by dispatching the action inside
-              onSelect={(platform) => setPlatformId(platform.id)}
-            />
-          </Box>
-          <SortSelector />
-        </Flex>
-      </Box>
+      <GridHeader />
+
       <InfiniteScroll
         dataLength={totalCount ?? 0}
         hasMore={!!hasNextPage}
