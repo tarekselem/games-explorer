@@ -1,7 +1,7 @@
 import { HStack, Image } from "@chakra-ui/react";
 import { useSearchQueryStore } from "@shared/hooks";
 import { Link } from "react-router-dom";
-import logo from "src/assets/logo.png";
+import logo from "src/assets/logo.webp";
 import { SearchInput, ColorModeSwitch } from "./components";
 
 export const NavBar = () => {
