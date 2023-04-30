@@ -22,7 +22,7 @@ interface SearchQueryStore {
 }
 
 const initialState: SearchFilters = {
-  pageSize: 18,
+  pageSize: 15,
   page: 1,
   sortOrder: "",
 };
